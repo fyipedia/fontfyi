@@ -4,9 +4,9 @@
 [![Python](https://img.shields.io/pypi/pyversions/fontfyi)](https://pypi.org/project/fontfyi/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Pure Python Google Fonts toolkit. Access [50 popular fonts](https://fontfyi.com/fonts/) metadata, generate CSS import URLs, browse [10 web-safe font stacks](https://fontfyi.com/font-stacks/), and [15 curated font pairings](https://fontfyi.com/pairings/) -- all with zero dependencies.
+Pure Python Google Fonts toolkit. Access [50 popular fonts](https://fontfyi.com/fonts/) metadata, generate CSS import URLs, browse [10 web-safe font stacks](https://fontfyi.com/tools/font-stack/), and [15 curated font pairings](https://fontfyi.com/pairings/) -- all with zero dependencies.
 
-> **Explore all fonts at [fontfyi.com](https://fontfyi.com/)** -- [font explorer](https://fontfyi.com/fonts/), [font pairings](https://fontfyi.com/pairings/), [font stacks](https://fontfyi.com/font-stacks/), and [developer API](https://fontfyi.com/developers/).
+> **Explore all fonts at [fontfyi.com](https://fontfyi.com/)** -- [font explorer](https://fontfyi.com/fonts/), [font pairings](https://fontfyi.com/pairings/), [font stacks](https://fontfyi.com/tools/font-stack/), and [developer API](https://fontfyi.com/developers/).
 
 ## Install
 
@@ -154,7 +154,7 @@ Full [API documentation](https://fontfyi.com/developers/) with OpenAPI spec at [
 
 | Function | Description |
 |----------|-------------|
-| `get_stack(slug) -> FontStack \| None` | Get a [font stack](https://fontfyi.com/font-stacks/) by slug |
+| `get_stack(slug) -> FontStack \| None` | Get a [font stack](https://fontfyi.com/tools/font-stack/) by slug |
 | `FONT_STACKS` | All 10 curated font stacks |
 
 Available stacks: `system-ui`, `transitional`, `old-style`, `humanist`, `geometric-humanist`, `neo-grotesque`, `monospace-slab`, `monospace-code`, `industrial`, `rounded`
@@ -207,7 +207,7 @@ Part of the [FYIPedia](https://fontfyi.com/) open-source developer tools ecosyst
 
 - [Font Explorer](https://fontfyi.com/fonts/) -- Browse all Google Fonts
 - [Font Pairings](https://fontfyi.com/pairings/) -- Curated heading + body combinations
-- [Font Stacks](https://fontfyi.com/font-stacks/) -- CSS-ready font stack presets
+- [Font Stacks](https://fontfyi.com/tools/font-stack/) -- CSS-ready font stack presets
 - [REST API Documentation](https://fontfyi.com/developers/) -- Free API with OpenAPI spec
 - [Source Code](https://github.com/fyipedia/fontfyi) -- MIT licensed
 

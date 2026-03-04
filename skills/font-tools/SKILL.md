@@ -51,6 +51,6 @@ Add to your `claude_desktop_config.json`:
 
 - [Google Fonts Explorer](https://fontfyi.com/fonts/)
 - [Font Pairings](https://fontfyi.com/pairings/)
-- [Font Stacks](https://fontfyi.com/font-stacks/)
+- [Font Stacks](https://fontfyi.com/tools/font-stack/)
 - [API Documentation](https://fontfyi.com/developers/)
 - [PyPI Package](https://pypi.org/project/fontfyi/)
