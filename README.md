@@ -188,7 +188,7 @@ Available stacks: `system-ui`, `transitional`, `old-style`, `humanist`, `geometr
 
 ## FYIPedia Developer Tools
 
-Part of the [FYIPedia](https://fontfyi.com/) open-source developer tools ecosystem:
+Part of the [FYIPedia](https://github.com/fyipedia) open-source developer tools ecosystem:
 
 | Package | Description |
 |---------|-------------|
