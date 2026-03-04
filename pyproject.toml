@@ -1,12 +1,25 @@
 [project]
 name = "fontfyi"
-version = "0.1.0"
-description = "Pure Python Google Fonts toolkit — 50 fonts metadata, CSS generation, font stacks, pairings, design systems."
+version = "0.2.0"
+description = "Pure Python Google Fonts toolkit -- 50 fonts metadata, CSS generation, font stacks, pairings, and design systems. Zero dependencies."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
 authors = [{ name = "FYIPedia" }]
-keywords = ["fonts", "google-fonts", "typography", "css", "font-stack", "font-pairing", "web-fonts"]
+keywords = [
+    "fonts",
+    "google-fonts",
+    "typography",
+    "css",
+    "font-stack",
+    "font-pairing",
+    "web-fonts",
+    "font-family",
+    "font-weight",
+    "web-typography",
+    "design-system",
+    "css-generator",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -20,14 +33,30 @@ classifiers = [
     "Topic :: Text Processing :: Fonts",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
+    "Environment :: Console",
 ]
 dependencies = []
 
+[project.optional-dependencies]
+api = ["httpx>=0.27"]
+cli = ["typer>=0.15", "rich>=13.0"]
+mcp = ["mcp>=1.0"]
+all = ["fontfyi[api,cli,mcp]"]
+
+[project.scripts]
+fontfyi = "fontfyi.cli:app"
+
+[project.entry-points."mcp.servers"]
+fontfyi = "fontfyi.mcp_server:mcp"
+
 [project.urls]
 Homepage = "https://fontfyi.com"
+"Google Fonts Explorer" = "https://fontfyi.com/fonts/"
+"Font Pairings" = "https://fontfyi.com/pairings/"
 Documentation = "https://fontfyi.com/developers/"
 Repository = "https://github.com/fyipedia/fontfyi"
 Issues = "https://github.com/fyipedia/fontfyi/issues"
+Changelog = "https://github.com/fyipedia/fontfyi/releases"
 
 [build-system]
 requires = ["hatchling"]
@@ -54,7 +83,11 @@ strict = true
 
 [dependency-groups]
 dev = [
+    "httpx>=0.27",
+    "mcp>=1.0",
     "mypy>=1.19.1",
     "pytest>=9.0.2",
+    "rich>=13.0",
     "ruff>=0.15.4",
+    "typer>=0.15",
 ]
