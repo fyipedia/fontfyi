@@ -1,6 +1,6 @@
 [project]
 name = "fontfyi"
-version = "0.2.0"
+version = "0.2.1"
 description = "Pure Python Google Fonts toolkit -- 50 fonts metadata, CSS generation, font stacks, pairings, and design systems. Zero dependencies."
 readme = "README.md"
 license = "MIT"
