@@ -47,6 +47,10 @@ Add to your `claude_desktop_config.json`:
 - Looking up font weights, subsets, and categories
 - Using system font stacks as fallbacks
 
+## Demo
+
+![FontFYI CLI Demo](https://raw.githubusercontent.com/fyipedia/fontfyi/main/demo.gif)
+
 ## Links
 
 - [Google Fonts Explorer](https://fontfyi.com/fonts/)
