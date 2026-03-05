@@ -16,6 +16,9 @@ Pure Python Google Fonts toolkit. Access [50 popular fonts](https://fontfyi.com/
 
 - [Install](#install)
 - [Quick Start](#quick-start)
+- [What You Can Do](#what-you-can-do)
+  - [Font Metadata](#font-metadata)
+  - [Font Pairing](#font-pairing)
 - [Font Pairings & Stacks](#font-pairings--stacks)
 - [Command-Line Interface](#command-line-interface)
 - [MCP Server (Claude, Cursor, Windsurf)](#mcp-server-claude-cursor-windsurf)
@@ -63,6 +66,73 @@ print(css_family("Inter", "sans-serif"))
 print(google_fonts_url("Inter", [400, 700]))
 # https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap
 ```
+
+## What You Can Do
+
+### Font Metadata
+
+Google Fonts serves over 1,500 font families, but most web projects rely on a curated subset of proven, high-performance typefaces. The package includes metadata for 50 of the most popular Google Fonts -- covering family name, category (serif, sans-serif, display, monospace, handwriting), available weight variants, italic support, character subsets, designer attribution, and popularity ranking. You can generate ready-to-use CSS `font-family` declarations, Google Fonts import URLs, HTML `<link>` tags, and even Homebrew install commands.
+
+| Font | Category | Weights | Designer |
+|------|----------|---------|----------|
+| Inter | sans-serif | 100--900 + italic | Rasmus Andersson |
+| Roboto | sans-serif | 100--900 + italic | Christian Robertson |
+| Open Sans | sans-serif | 300--800 + italic | Steve Matteson |
+| Lora | serif | 400--700 + italic | Cyreal |
+| Fira Code | monospace | 300--700 | Nikita Prokopov |
+| Playfair Display | serif | 400--900 + italic | Claus Eggers Sorensen |
+| JetBrains Mono | monospace | 100--800 + italic | JetBrains |
+| Montserrat | sans-serif | 100--900 + italic | Julieta Ulanovsky |
+
+```python
+from fontfyi import get_font, css_family, google_fonts_url, parse_variants
+
+# Access font metadata for any of the 50 included Google Fonts
+font = get_font("fira-code")
+print(font["family"])       # Fira Code
+print(font["category"])     # monospace
+print(font["designer"])     # Nikita Prokopov
+
+# Parse available weight variants and italic support
+weights, italic = parse_variants(font["variants"])
+print(weights)              # [300, 400, 500, 600, 700]
+print(italic)               # False
+
+# Generate CSS font-family declaration with fallback
+print(css_family("Fira Code", "monospace"))
+# 'Fira Code', monospace
+
+# Generate Google Fonts import URL with specific weights
+print(google_fonts_url("Fira Code", [400, 700]))
+# https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap
+```
+
+Learn more: [Google Fonts Explorer](https://fontfyi.com/) · [Font Search by Category](https://fontfyi.com/category/)
+
+### Font Pairing
+
+Choosing complementary heading and body typefaces is one of the most impactful design decisions for readability and visual hierarchy. Good font pairings balance contrast (serif + sans-serif, geometric + humanist) with harmony (matching x-heights, similar proportions). The package includes 15 curated font pairings with compatibility scores, rationale explaining why the combination works, mood descriptors, and suggested use cases -- saving hours of trial and error.
+
+```python
+from fontfyi import get_pairings_for, featured_pairings
+
+# Get font pairing recommendations for a specific typeface
+pairings = get_pairings_for("inter")
+for p in pairings:
+    print(f"Heading: {p.heading} + Body: {p.body}")
+    print(f"  Score: {p.score}/10")
+    print(f"  Rationale: {p.rationale}")
+    print(f"  Mood: {p.mood}")
+    print(f"  Use cases: {p.use_cases}")
+
+# Browse only high-scoring featured pairings (score >= 8)
+top_pairings = featured_pairings()
+print(f"{len(top_pairings)} featured pairings with score >= 8")
+for p in top_pairings:
+    print(f"  {p.heading} + {p.body} ({p.score}/10) -- {p.mood}")
+```
+
+Learn more: [Font Pairing Recommendations](https://fontfyi.com/pairings/) · [Font Stack Presets](https://fontfyi.com/tools/font-stack/)
 
 ## Font Pairings & Stacks
 
