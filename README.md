@@ -8,6 +8,10 @@ Pure Python Google Fonts toolkit. Access [50 popular fonts](https://fontfyi.com/
 
 > **Explore all fonts at [fontfyi.com](https://fontfyi.com/)** -- [font explorer](https://fontfyi.com/fonts/), [font pairings](https://fontfyi.com/pairings/), [font stacks](https://fontfyi.com/tools/font-stack/), and [developer API](https://fontfyi.com/developers/).
 
+<p align="center">
+  <img src="demo.gif" alt="fontfyi CLI demo" width="800">
+</p>
+
 ## Install
 
 ```bash
