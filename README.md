@@ -1,6 +1,6 @@
 # fontfyi
 
-[![PyPI](https://img.shields.io/pypi/v/fontfyi)](https://pypi.org/project/fontfyi/)
+[![PyPI version](https://agentgif.com/badge/pypi/fontfyi/version.svg)](https://pypi.org/project/fontfyi/)
 [![Python](https://img.shields.io/pypi/pyversions/fontfyi)](https://pypi.org/project/fontfyi/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
