@@ -7,11 +7,9 @@ Usage::
     from fontfyi.api import FontFYI
 
     with FontFYI() as api:
-        info = api.font("inter")
-        print(info["family"])  # "Inter"
-
-        results = api.search("mono")
-        print(results)
+        items = api.list_blog_categories()
+        detail = api.get_blog_category("example-slug")
+        results = api.search("query")
 """
 
 from __future__ import annotations
@@ -24,96 +22,104 @@ import httpx
 class FontFYI:
     """API client for the fontfyi.com REST API.
 
+    Provides typed access to all fontfyi.com endpoints including
+    list, detail, and search operations.
+
     Args:
-        base_url: API base URL. Defaults to ``https://fontfyi.com/api``.
+        base_url: API base URL. Defaults to ``https://fontfyi.com``.
         timeout: Request timeout in seconds. Defaults to ``10.0``.
     """
 
     def __init__(
         self,
-        base_url: str = "https://fontfyi.com/api",
+        base_url: str = "https://fontfyi.com",
         timeout: float = 10.0,
     ) -> None:
         self._client = httpx.Client(base_url=base_url, timeout=timeout)
 
-    # -- HTTP helpers ----------------------------------------------------------
-
     def _get(self, path: str, **params: Any) -> dict[str, Any]:
-        resp = self._client.get(path, params={k: v for k, v in params.items() if v is not None})
+        resp = self._client.get(
+            path,
+            params={k: v for k, v in params.items() if v is not None},
+        )
         resp.raise_for_status()
         result: dict[str, Any] = resp.json()
         return result
 
-    # -- Endpoints -------------------------------------------------------------
+    # -- Endpoints -----------------------------------------------------------
 
-    def font(self, slug: str) -> dict[str, Any]:
-        """Get font metadata by slug.
+    def list_blog_categories(self, **params: Any) -> dict[str, Any]:
+        """List all blog categories."""
+        return self._get("/api/v1/blog-categories/", **params)
 
-        Args:
-            slug: Font slug (e.g. ``"inter"``).
+    def get_blog_category(self, slug: str) -> dict[str, Any]:
+        """Get blog category by slug."""
+        return self._get(f"/api/v1/blog-categories/" + slug + "/")
 
-        Returns:
-            Dict with family, category, variants, subsets, designer, etc.
-        """
-        return self._get(f"/font/{slug}/")
+    def list_blog_posts(self, **params: Any) -> dict[str, Any]:
+        """List all blog posts."""
+        return self._get("/api/v1/blog-posts/", **params)
 
-    def css(self, slug: str) -> dict[str, Any]:
-        """Get CSS import snippet for a font.
+    def get_blog_post(self, slug: str) -> dict[str, Any]:
+        """Get blog post by slug."""
+        return self._get(f"/api/v1/blog-posts/" + slug + "/")
 
-        Args:
-            slug: Font slug (e.g. ``"inter"``).
+    def list_blog_series(self, **params: Any) -> dict[str, Any]:
+        """List all blog series."""
+        return self._get("/api/v1/blog-series/", **params)
 
-        Returns:
-            Dict with CSS import URL, font-family declaration, etc.
-        """
-        return self._get(f"/font/{slug}/css/")
+    def get_blog_sery(self, slug: str) -> dict[str, Any]:
+        """Get blog sery by slug."""
+        return self._get(f"/api/v1/blog-series/" + slug + "/")
 
-    def fonts(self, **filters: Any) -> dict[str, Any]:
-        """Browse all fonts with optional filters.
+    def list_faqs(self, **params: Any) -> dict[str, Any]:
+        """List all faqs."""
+        return self._get("/api/v1/faqs/", **params)
 
-        Args:
-            **filters: Optional query params (category, tag, page).
+    def get_faq(self, slug: str) -> dict[str, Any]:
+        """Get faq by slug."""
+        return self._get(f"/api/v1/faqs/" + slug + "/")
 
-        Returns:
-            Dict with fonts list and pagination info.
-        """
-        return self._get("/fonts/", **filters)
+    def list_fonts(self, **params: Any) -> dict[str, Any]:
+        """List all fonts."""
+        return self._get("/api/v1/fonts/", **params)
 
-    def search(self, query: str) -> dict[str, Any]:
-        """Search fonts by name.
+    def get_font(self, slug: str) -> dict[str, Any]:
+        """Get font by slug."""
+        return self._get(f"/api/v1/fonts/" + slug + "/")
 
-        Args:
-            query: Search term (e.g. ``"mono"``, ``"sans"``).
-        """
-        return self._get("/search/", q=query)
+    def list_glossary(self, **params: Any) -> dict[str, Any]:
+        """List all glossary."""
+        return self._get("/api/v1/glossary/", **params)
 
-    def pairings(self, slug: str) -> dict[str, Any]:
-        """Get font pairing recommendations.
+    def get_term(self, slug: str) -> dict[str, Any]:
+        """Get term by slug."""
+        return self._get(f"/api/v1/glossary/" + slug + "/")
 
-        Args:
-            slug: Font slug (e.g. ``"inter"``).
+    def list_pairings(self, **params: Any) -> dict[str, Any]:
+        """List all pairings."""
+        return self._get("/api/v1/pairings/", **params)
 
-        Returns:
-            Dict with pairing suggestions including heading/body combos.
-        """
-        return self._get(f"/pairings/{slug}/")
+    def get_pairing(self, slug: str) -> dict[str, Any]:
+        """Get pairing by slug."""
+        return self._get(f"/api/v1/pairings/" + slug + "/")
 
-    def tags(self) -> dict[str, Any]:
-        """Get all available font tags."""
-        return self._get("/tags/")
+    def list_tags(self, **params: Any) -> dict[str, Any]:
+        """List all tags."""
+        return self._get("/api/v1/tags/", **params)
 
-    def stacks(self) -> dict[str, Any]:
-        """Get all CSS font stack presets."""
-        return self._get("/font-stacks/")
+    def get_tag(self, slug: str) -> dict[str, Any]:
+        """Get tag by slug."""
+        return self._get(f"/api/v1/tags/" + slug + "/")
 
-    def random(self) -> dict[str, Any]:
-        """Get a random font."""
-        return self._get("/random/")
+    def search(self, query: str, **params: Any) -> dict[str, Any]:
+        """Search across all content."""
+        return self._get(f"/api/v1/search/", q=query, **params)
 
-    # -- Context manager -------------------------------------------------------
+    # -- Lifecycle -----------------------------------------------------------
 
     def close(self) -> None:
-        """Close the underlying HTTP connection."""
+        """Close the underlying HTTP client."""
         self._client.close()
 
     def __enter__(self) -> FontFYI:
