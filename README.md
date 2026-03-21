@@ -282,8 +282,7 @@ Available stacks: `system-ui`, `transitional`, `old-style`, `humanist`, `geometr
 ## Learn More About Fonts
 
 - **Browse**: [Google Fonts Browser](https://fontfyi.com/) · [Font Search](https://fontfyi.com/search/) · [Categories](https://fontfyi.com/category/)
-- **Tools**: [Font Pairing Tool](https://fontfyi.com/tools/pairing/) · [CSS Generator](https://fontfyi.com/tools/css/)
-- **Guides**: [Glossary](https://fontfyi.com/glossary/) · [Blog](https://fontfyi.com/blog/)
+- **Tools**: - **Guides**: [Glossary](https://fontfyi.com/glossary/) · [Blog](https://fontfyi.com/blog/)
 - **API**: [REST API Docs](https://fontfyi.com/developers/) · [OpenAPI Spec](https://fontfyi.com/api/openapi.json)
 
 ## Creative FYI Family
